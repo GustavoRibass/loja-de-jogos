@@ -10,13 +10,13 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">GameStore</a>
+            <a class="navbar-brand" href="index.php">GameStore</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.php">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Lançamentos</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Promoções</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contato</a></li>
+                    <li class="nav-item"><a class="nav-link text-warning" href="cadastro.php">Cadastre-se</a></li>
                 </ul>
             </div>
         </div>
