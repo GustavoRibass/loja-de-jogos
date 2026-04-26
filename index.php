@@ -78,7 +78,7 @@
         </div>
     </div>
 
-    <footer class="footer mt-5">
+<footer class="footer mt-5">
         <div class="container py-5 text-center">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
@@ -88,6 +88,8 @@
                     <ul class="list-inline footer-links mt-4">
                         <li class="list-inline-item mx-3"><a href="index.php">Início</a></li>
                         <li class="list-inline-item mx-3"><a href="cadastro.php">Cadastro</a></li>
+                        <li class="list-inline-item mx-3"><a href="#">Privacidade</a></li>
+                        <li class="list-inline-item mx-3"><a href="#">Termos de Uso</a></li>
                     </ul>
                 </div>
             </div>
