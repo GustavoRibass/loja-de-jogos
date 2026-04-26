@@ -12,7 +12,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="index.php">GRGAMESTORE</a>
+            <a class="navbar-brand fw-bold" href="index.php">GRGAME<span>STORE</span></a>
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="index.php">Home</a>
                 <a class="nav-link active" href="cadastro.php">Cadastre-se</a>
@@ -22,32 +22,49 @@
 
     <div class="container my-auto py-5">
         <div class="row justify-content-center">
-            <div class="col-md-5">
-                <div class="card shadow-lg border-0">
-                    <div class="text-center mb-4">
-                        <h2>Crie sua conta</h2>
-                        <span class="text-muted">Junte-se à maior comunidade gamer</span>
+            <div class="col-md-7"> <div class="card shadow-lg border-0">
+                    <div class="card-body p-5">
+                        <h2 class="mb-4">Criar Conta</h2>
+                        
+                        <form id="formCadastro" novalidate>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Nome Completo</label>
+                                    <input type="text" class="form-control" id="nome" placeholder="Ex: Leon S. Kennedy" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Data de Nascimento</label>
+                                    <input type="date" class="form-control" id="nascimento" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">E-mail</label>
+                                    <input type="email" class="form-control" id="email" placeholder="agente@resident.com" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Telefone</label>
+                                    <input type="tel" class="form-control" id="telefone" placeholder="(11) 99999-9999" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Senha</label>
+                                    <input type="password" class="form-control" id="senha" placeholder="••••••••" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Confirmar Senha</label>
+                                    <input type="password" class="form-control" id="confirmaSenha" placeholder="••••••••" required>
+                                </div>
+                            </div>
+
+                            <div class="d-grid gap-2 mt-4">
+                                <button type="submit" class="btn btn-dark btn-lg">FINALIZAR CADASTRO</button>
+                            </div>
+                        </form>
                     </div>
-
-                    <form id="formCadastro">
-                        <div class="mb-3">
-                            <label class="form-label">Nome de Herói</label>
-                            <input type="text" class="form-control" placeholder="Ex: Leon S. Kennedy" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Seu melhor E-mail</label>
-                            <input type="email" class="form-control" placeholder="agente@resident.com" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Senha Secreta</label>
-                            <input type="password" class="form-control" placeholder="••••••••" required>
-                        </div>
-
-                        <div class="d-grid gap-2 mt-4">
-                            <button type="submit" class="btn btn-dark btn-lg">ENTRAR PARA O TIME</button>
-                            <a href="index.php" class="btn btn-link text-white-50 mt-2 text-decoration-none small">Voltar para a loja</a>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -59,11 +76,10 @@
                 <div class="modal-body">
                     <div class="display-1 text-success mb-4">✓</div>
                     <h3 class="fw-bold text-white mb-2">Missão Cumprida!</h3>
-                    <p class="text-white-50 mb-4">Seu cadastro foi realizado com sucesso.</p>
-                    
-                    <div class="d-flex align-items-center justify-content-center gap-2">
-                        <div class="spinner-border spinner-border-sm text-success" role="status"></div>
-                        <span class="text-success fw-bold small text-uppercase">Retornando à tela inicial...</span>
+                    <p class="text-white-50 mb-4">O teu cadastro na GRGameStore foi realizado.</p>
+                    <div class="d-flex align-items-center justify-content-center gap-2 text-success fw-bold">
+                        <div class="spinner-border spinner-border-sm" role="status"></div>
+                        <span>RETORNANDO...</span>
                     </div>
                 </div>
             </div>
@@ -71,19 +87,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.getElementById('formCadastro').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Ativa o modal
-            var myModal = new bootstrap.Modal(document.getElementById('modalSucesso'));
-            myModal.show();
-            
-            // Redireciona após 3 segundos
-            setTimeout(function() {
-                window.location.href = 'index.php';
-            }, 3000);
-        });
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>
