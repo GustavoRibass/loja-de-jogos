@@ -1,0 +1,142 @@
+body {
+  background-color: #050608;
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-image: radial-gradient(circle at 50% -20%, rgba(162, 124, 255, 0.15) 0%, transparent 50%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.navbar {
+  background: rgba(5, 6, 8, 0.95) !important;
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+.navbar .navbar-brand {
+  font-weight: 800;
+  color: #ffffff !important;
+}
+.navbar .navbar-brand span {
+  color: #a27cff;
+}
+.navbar .nav-link {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+.navbar .nav-link.active {
+  color: #a27cff !important;
+  font-weight: 700;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 30px;
+  padding: 40px;
+  height: 100%;
+}
+.card .category-badge {
+  color: #a27cff !important;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  display: block;
+  margin-bottom: 10px;
+}
+.card .card-title {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  font-size: 1.3rem;
+}
+.card .price-tag {
+  color: #00ff88 !important;
+  font-weight: 900 !important;
+  font-size: 1.6rem !important;
+  margin: 15px 0;
+  display: block;
+}
+.card h2 {
+  color: #ffffff !important;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+.card .text-muted {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.form-label {
+  color: #a27cff !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  margin-top: 20px;
+}
+
+.form-control {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  border-radius: 15px;
+  padding: 14px;
+}
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.7) !important;
+  opacity: 1;
+}
+.form-control:focus {
+  border-color: #a27cff !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+.btn-primary {
+  background: #a27cff !important;
+  border: none;
+  font-weight: 700;
+}
+
+.btn-dark {
+  background: linear-gradient(45deg, #a27cff, #7c4dff) !important;
+  border-radius: 15px !important;
+  font-weight: 800 !important;
+  padding: 16px !important;
+}
+
+.modal-content {
+  background: #0f111a !important;
+  color: white !important;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+}
+.modal-content .btn-close {
+  filter: invert(1);
+}
+
+.footer {
+  background: rgba(10, 12, 17, 0.8) !important;
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+.footer .footer-brand {
+  font-weight: 800;
+  color: #ffffff;
+}
+.footer .footer-brand span {
+  color: #a27cff;
+}
+.footer .footer-links .list-inline-item a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 0.9rem;
+}
+.footer .footer-links .list-inline-item a:hover {
+  color: #a27cff;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 25px !important;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

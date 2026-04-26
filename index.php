@@ -3,86 +3,98 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Game Store - Sua Loja de Jogos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <title>GRGameStore | Home</title>
 </head>
-<body class="bg-light">
+<body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="index.php">GameStore</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.php">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Lançamentos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Promoções</a></li>
-                    <li class="nav-item"><a class="nav-link text-warning" href="cadastro.php">Cadastre-se</a></li>
-                </ul>
+            <a class="navbar-brand fw-bold" href="index.php">GRGAME<span>STORE</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link active" href="index.php">INÍCIO</a>
+                    <a class="nav-link" href="cadastro.php">CADASTRO</a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-4">
-        
-        <div id="carrosselJogos" class="carousel slide mb-5 shadow-sm rounded" data-bs-ride="carousel">
-            <div class="carousel-inner rounded">
-                <div class="carousel-item active">
-                    <img src="https://via.placeholder.com/1200x300/1a1a1a/ffffff?text=Grandes+Lancamentos+da+Semana" class="d-block w-100" alt="Lançamentos">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://via.placeholder.com/1200x300/8b0000/ffffff?text=Promocoes+de+ate+50%25" class="d-block w-100" alt="Promoções">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carrosselJogos" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Anterior</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carrosselJogos" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Próximo</span>
-            </button>
-        </div>
-
-        <h2 class="mb-4">Catálogo de Jogos</h2>
-        <div class="row">
-            
+    <div class="container mt-5">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
             <?php foreach($jogos as $jogo): ?>
-                <div class="col-md-4 mb-4">
+                <div class="col">
                     <div class="card h-100 shadow-sm">
-                        <img src="<?php echo $jogo['imagem']; ?>" class="card-img-top" alt="...">
+                        <img src="<?php echo $jogo['imagem']; ?>" class="card-img-top">
                         <div class="card-body d-flex flex-column">
+                            <span class="category-badge"><?php echo $jogo['categoria']; ?></span>
                             <h5 class="card-title"><?php echo $jogo['titulo']; ?></h5>
-                            <p class="badge bg-primary align-self-start"><?php echo $jogo['categoria']; ?></p>
-                            <p class="card-text flex-grow-1"><?php echo $jogo['descricao']; ?></p>
-                            <h4 class="text-success"><?php echo $jogo['preco']; ?></h4>
-                            <button class="btn btn-dark w-100 mt-auto" data-bs-toggle="modal" data-bs-target="#modalComprar">
-                                Comprar
-                            </button>
+                            
+                            <div class="mt-auto">
+                                <p class="price-tag"><?php echo $jogo['preco']; ?></p>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#buy">Comprar</button>
+                                    <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#m<?php echo $jogo['id']; ?>">Sobre o jogo</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="m<?php echo $jogo['id']; ?>" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content border-0 shadow-lg">
+                            <div class="modal-header border-0">
+                                <h5 class="modal-title fw-bold fs-3"><?php echo $jogo['titulo']; ?></h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body p-4">
+                                <div class="row align-items-center">
+                                    <div class="col-md-7 mb-4 mb-md-0">
+                                        <img src="<?php echo $jogo['imagem']; ?>" class="img-fluid rounded-4 shadow-lg w-100">
+                                    </div>
+                                    <div class="col-md-5 ps-lg-5">
+                                        <span class="category-badge mb-2 d-inline-block"><?php echo $jogo['categoria']; ?></span>
+                                        <p class="text-white-50 mb-4"><?php echo $jogo['plataformas']; ?></p>
+                                        <p class="fs-5 text-white-50"><?php echo $jogo['descricao']; ?></p>
+                                        <hr class="border-secondary my-4">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <h2 class="price-tag m-0"><?php echo $jogo['preco']; ?></h2>
+                                            <button class="btn btn-primary btn-lg px-4">ADICIONAR</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             <?php endforeach; ?>
-
         </div>
     </div>
 
-    <div class="modal fade" id="modalComprar" tabindex="-1" aria-labelledby="modalComprarLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title" id="modalComprarLabel">Sucesso!</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>O jogo foi adicionado ao seu carrinho. O que você deseja fazer agora?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continuar Comprando</button>
-                    <button type="button" class="btn btn-success">Ir para o Pagamento</button>
+    <footer class="footer mt-5">
+        <div class="container py-5 text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h4 class="footer-brand">GRGAME<span>STORE</span></h4>
+                    <p class="text-white-50 mt-3">Sua loja premium de jogos digitais. Qualidade e velocidade em cada download.</p>
+                    
+                    <ul class="list-inline footer-links mt-4">
+                        <li class="list-inline-item mx-3"><a href="index.php">Início</a></li>
+                        <li class="list-inline-item mx-3"><a href="cadastro.php">Cadastro</a></li>
+                    </ul>
                 </div>
             </div>
+            <hr class="my-5 border-secondary opacity-25">
+            <p class="text-white-50 small mb-0">&copy; 2026 GRGameStore. Todos os direitos reservados.</p>
         </div>
-    </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
