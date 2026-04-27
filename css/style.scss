@@ -1,4 +1,4 @@
-// --- VARIÁVEIS ---
+// --- 1. VARIÁVEIS DE ELITE ---
 $bg-dark: #050608;
 $card-glass: rgba(255, 255, 255, 0.05);
 $accent-violet: #a27cff;
@@ -7,7 +7,7 @@ $text-pure: #ffffff;
 $text-dim: rgba(255, 255, 255, 0.7);
 $border-glass: rgba(255, 255, 255, 0.15);
 
-// --- GLOBAL ---
+// --- 2. GLOBAL & RESET ---
 body {
     background-color: $bg-dark;
     color: $text-pure;
@@ -15,71 +15,197 @@ body {
     background-image: radial-gradient(circle at 50% -20%, rgba(162, 124, 255, 0.15) 0%, transparent 50%);
     background-attachment: fixed;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
-// --- NAVBAR ---
+// --- 3. NAVBAR (Glassmorphism) ---
 .navbar {
-    background: rgba(5, 6, 8, 0.95) !important;
+    background: rgba(5, 6, 8, 0.9) !important;
     backdrop-filter: blur(15px);
     border-bottom: 1px solid $border-glass;
+    padding: 1rem 0;
+
     .navbar-brand { 
         font-weight: 800; 
+        font-size: 1.5rem;
         color: $text-pure !important; 
         span { color: $accent-violet; } 
     }
-    .nav-link { color: $text-dim !important; &.active { color: $accent-violet !important; font-weight: 700; } }
+    .nav-link { 
+        color: $text-dim !important; 
+        font-weight: 600;
+        transition: 0.3s;
+        &.active { color: $accent-violet !important; }
+        &:hover { color: $text-pure !important; }
+    }
 }
 
-// --- CARDS (INDEX E CADASTRO) ---
+// --- 4. HERO BANNER (Estático) ---
+.hero-banner {
+    background: linear-gradient(rgba(5, 6, 8, 0.6), rgba(5, 6, 8, 0.8)), 
+                url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 100px 0;
+    border-bottom: 1px solid $border-glass;
+    
+    .hero-content {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(15px);
+        border: 1px solid $border-glass;
+        animation: fadeInUp 1s ease-out;
+    }
+    .text-violet { color: $accent-violet; }
+}
+
+// --- 5. CARROSSEL (Destaques Dinâmicos) ---
+.carousel {
+    border-radius: 30px;
+    overflow: hidden;
+    border: 1px solid $border-glass;
+    
+    .carousel-item {
+        img {
+            height: 500px;
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+    }
+
+    .carousel-caption {
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+        border: 1px solid $border-glass;
+        bottom: 40px;
+        padding: 20px;
+        border-radius: 20px;
+        h2 { font-weight: 800; }
+    }
+}
+
+// --- 6. CARDS DA VITRINE ---
 .card {
     background: $card-glass !important;
     backdrop-filter: blur(25px);
     border: 1px solid $border-glass !important;
     border-radius: 30px;
-    padding: 40px;
+    padding: 20px;
     height: 100%;
+    transition: transform 0.3s ease;
 
-    .category-badge { color: $accent-violet !important; font-weight: 800; text-transform: uppercase; font-size: 0.8rem; display: block; margin-bottom: 10px; }
-    .card-title { color: $text-pure !important; font-weight: 800 !important; font-size: 1.3rem; }
-    .price-tag { color: $neon-green !important; font-weight: 900 !important; font-size: 1.6rem !important; margin: 15px 0; display: block; }
-    
-    h2 { color: $text-pure !important; font-weight: 800; letter-spacing: -1px; }
-    .text-muted { color: $text-dim !important; }
+    &:hover { transform: translateY(-10px); }
+
+    .card-img-top { border-radius: 20px; margin-bottom: 15px; }
+
+    .category-badge { 
+        color: $accent-violet !important; 
+        font-weight: 800; 
+        text-transform: uppercase; 
+        font-size: 0.75rem; 
+        letter-spacing: 1px;
+    }
+
+    .card-title { 
+        color: $text-pure !important; 
+        font-weight: 800 !important; 
+        margin: 10px 0;
+    }
+
+    .price-tag { 
+        color: $neon-green !important; 
+        font-weight: 900 !important; 
+        font-size: 1.5rem !important; 
+    }
 }
 
-// --- FORMULÁRIO (VISIBILIDADE DOS EXEMPLOS) ---
-.form-label { color: $accent-violet !important; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; margin-top: 20px; }
-.form-control { 
+// --- 7. FORMULÁRIOS (Cadastro & Solicitar) ---
+.form-label { 
+    color: $accent-violet !important; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    font-size: 0.8rem; 
+}
+
+.form-control, .form-select { 
     background: rgba(255, 255, 255, 0.08) !important; 
     border: 1px solid $border-glass !important; 
     color: #ffffff !important; 
     border-radius: 15px; 
-    padding: 14px; 
-    &::placeholder { color: rgba(255, 255, 255, 0.7) !important; opacity: 1; }
-    &:focus { border-color: $accent-violet !important; background: rgba(255,255,255,0.12) !important; }
+    padding: 12px; 
+    
+    &::placeholder { 
+        color: rgba(255, 255, 255, 0.6) !important; // Corrigida visibilidade
+        opacity: 1; 
+    }
+
+    &:focus { 
+        border-color: $accent-violet !important; 
+        box-shadow: 0 0 0 0.25rem rgba(162, 124, 255, 0.25);
+    }
 }
 
-// --- BOTÕES E MODAIS ---
-.btn-primary { background: $accent-violet !important; border: none; font-weight: 700; }
-.btn-dark { background: linear-gradient(45deg, $accent-violet, #7c4dff) !important; border-radius: 15px !important; font-weight: 800 !important; padding: 16px !important; }
-.modal-content { background: #0f111a !important; color: white !important; border: 1px solid $border-glass; border-radius: 30px; .btn-close { filter: invert(1); } }
+// --- 8. BOTÕES ---
+.btn-primary { 
+    background: $accent-violet !important; 
+    border: none; 
+    font-weight: 700; 
+    border-radius: 12px;
+    &:hover { filter: brightness(1.1); }
+}
 
-// --- RODAPÉ CENTRALIZADO ---
+.btn-dark { 
+    background: linear-gradient(45deg, $accent-violet, #7c4dff) !important; 
+    border: none !important;
+    border-radius: 15px !important; 
+    font-weight: 800 !important; 
+}
+
+.btn-outline-secondary {
+    border-color: $border-glass;
+    color: $text-dim;
+    &:hover { background: $border-glass; color: $text-pure; }
+}
+
+// --- 9. MODAIS ---
+.modal-content { 
+    background: #0f111a !important; 
+    color: white !important; 
+    border: 1px solid $border-glass; 
+    border-radius: 30px; 
+    .btn-close { filter: invert(1); } 
+}
+
+// --- 10. FOOTER ---
 .footer {
     background: rgba(10, 12, 17, 0.8) !important;
     backdrop-filter: blur(10px);
     border-top: 1px solid $border-glass;
-    .footer-brand { font-weight: 800; color: $text-pure; span { color: $accent-violet; } }
-    .footer-links .list-inline-item a { 
+    
+    .footer-brand { 
+        font-weight: 800; 
+        color: $text-pure; 
+        span { color: $accent-violet; } 
+    }
+    
+    .footer-links a { 
         color: $text-dim; 
         text-decoration: none; 
-        transition: 0.3s;
         font-size: 0.9rem;
+        transition: 0.3s;
         &:hover { color: $accent-violet; } 
     }
 }
 
-// --- RESPONSIVIDADE ---
+// --- 11. ANIMAÇÕES ---
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+// --- 12. RESPONSIVIDADE ---
 @media (max-width: 768px) {
-    .card { padding: 25px !important; }
+    .hero-banner { padding: 60px 0; h1 { font-size: 2.5rem; } }
+    .carousel-item img { height: 300px; }
+    .card { padding: 15px !important; }
 }
