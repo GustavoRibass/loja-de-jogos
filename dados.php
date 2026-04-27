@@ -3,7 +3,7 @@ $minha_chave = "26596439850145898faa20a5fb801e03";
 
 $nomes_dos_jogos = ["Black Myth: Wukong", "Resident Evil 9", "Silent Hill 2", "Crimson Desert", "Resident Evil 2 Remake", "Resident Evil 4 Remake"];
 
-// 1. TABELA DE PREÇOS FIXOS (Agora não muda mais!)
+// 1. TABELA DE PREÇOS FIXOS
 $precos_custom = [
     "Wukong" => "R$ 229,90",
     "Resident Evil 9" => "R$ 299,90",
