@@ -29,7 +29,8 @@
 
     <div class="container my-auto py-5">
         <div class="row justify-content-center">
-            <div class="col-md-6"> <div class="card shadow-lg border-0 p-4">
+            <div class="col-md-6"> 
+                <div class="card shadow-lg border-0 p-4">
                     <div class="card-body">
                         <h2 class="mb-4 text-white fw-bold">Criar Conta</h2>
                         
@@ -45,7 +46,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Seu melhor E-mail</label>
+                                <label class="form-label">O teu melhor E-mail</label>
                                 <input type="email" class="form-control" id="email" placeholder="agente@resident.com" required>
                             </div>
 
@@ -75,8 +76,48 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalLancamentos" tabindex="-1">...</div>
-    <div class="modal fade" id="modalSolicitar" tabindex="-1">...</div>
+    <div class="modal fade" id="modalLancamentos" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg text-center p-5">
+                <div class="modal-body">
+                    <div class="spinner-grow text-primary mb-3" role="status"></div>
+                    <h4 class="text-white fw-bold">Brevemente</h4>
+                    <p class="text-white-50">Estamos a preparar a lista dos jogos mais aguardados.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalSolicitar" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg p-4">
+                <div class="modal-header border-0 text-white">
+                    <h5 class="modal-title fw-bold">Solicitar Jogo</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-white">
+                    <form id="formSolicitar">
+                        <div class="mb-3">
+                            <label class="form-label">Nome do Jogo</label>
+                            <input type="text" class="form-control" id="nomeJogo" placeholder="Ex: GTA VI" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Plataforma</label>
+                            <select class="form-select text-white" id="plataformaJogo" style="background-color: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255,255,255,0.2);" required>
+                                <option value="" selected disabled style="background-color: #1a1a1a; color: #888;">Selecione a plataforma</option>
+                                <option value="PC" style="background-color: #1a1a1a; color: #fff;">PC (Windows)</option>
+                                <option value="PS5" style="background-color: #1a1a1a; color: #fff;">PlayStation 5</option>
+                                <option value="Xbox" style="background-color: #1a1a1a; color: #fff;">Xbox Series X/S</option>
+                                <option value="Nintendo" style="background-color: #1a1a1a; color: #fff;">Nintendo Switch</option>
+                                <option value="Mobile" style="background-color: #1a1a1a; color: #fff;">Mobile (Android/iOS)</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-primary w-100 py-3 fw-bold" onclick="enviarSolicitacao()">ENVIAR PEDIDO</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade" id="modalSucesso" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">

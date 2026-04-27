@@ -50,34 +50,27 @@
             </div>
             
             <div class="carousel-inner rounded-5 border-glass">
-                <div class="carousel-item active" data-bs-interval="3000">
-                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070" class="d-block w-100" alt="Games">
-                    <div class="carousel-caption d-none d-md-block p-4 rounded-4">
-                        <h2 class="fw-bold">Black Myth: Wukong</h2>
-                        <p>Explora a mitologia chinesa neste RPG de ação épico.</p>
+                <?php 
+                $destaques = array_slice($jogos, 0, 3);
+                foreach($destaques as $index => $jogo_destaque): 
+                    $ativo = ($index == 0) ? 'active' : '';
+                ?>
+                <div class="carousel-item <?php echo $ativo; ?>" data-bs-interval="3000">
+                    <img src="<?php echo $jogo_destaque['imagem']; ?>" class="d-block w-100" style="height: 500px; object-fit: cover; object-position: top;" alt="<?php echo $jogo_destaque['titulo']; ?>">
+                    
+                    <div class="carousel-caption d-none d-md-block p-4 rounded-4" style="background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); bottom: 1.25rem;">
+                        <h2 class="fw-bold text-white"><?php echo $jogo_destaque['titulo']; ?></h2>
+                        <p class="text-white-50 mb-0"><?php echo $jogo_destaque['descricao']; ?></p>
                     </div>
                 </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2070" class="d-block w-100" alt="Gamer Setup">
-                    <div class="carousel-caption d-none d-md-block p-4 rounded-4">
-                        <h2 class="fw-bold">Resident Evil Saga</h2>
-                        <p>Sobrevive ao terror com descontos exclusivos de até 70%.</p>
-                    </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070" class="d-block w-100" alt="Tech">
-                    <div class="carousel-caption d-none d-md-block p-4 rounded-4">
-                        <h2 class="fw-bold">Silent Hill 2 Remake</h2>
-                        <p>Um mergulho profundo no terror psicológico clássico.</p>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
 
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselDestaques" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselDestaques" data-bs-slide="prev" style="width: auto; left: 30px;">
+                <span class="carousel-control-prev-icon p-3 rounded-circle" style="background-color: rgba(0,0,0,0.6);" aria-hidden="true"></span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselDestaques" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselDestaques" data-bs-slide="next" style="width: auto; right: 30px;">
+                <span class="carousel-control-next-icon p-3 rounded-circle" style="background-color: rgba(0,0,0,0.6);" aria-hidden="true"></span>
             </button>
         </div>
     </div>
@@ -95,7 +88,7 @@
                             <div class="mt-auto">
                                 <p class="price-tag"><?php echo $jogo['preco']; ?></p>
                                 <div class="d-grid gap-2">
-                                    <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#buy">Comprar</button>
+                                    <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalCompra" onclick="prepararCompra('<?php echo addslashes($jogo['titulo']); ?>', '<?php echo $jogo['preco']; ?>')">Comprar</button>
                                     <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#m<?php echo $jogo['id']; ?>">Sobre o jogo</button>
                                 </div>
                             </div>
@@ -122,7 +115,7 @@
                                         <hr class="border-secondary my-4">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <h2 class="price-tag m-0"><?php echo $jogo['preco']; ?></h2>
-                                            <button class="btn btn-primary btn-lg px-4">ADICIONAR</button>
+                                            <button class="btn btn-primary btn-lg px-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalCompra" onclick="prepararCompra('<?php echo addslashes($jogo['titulo']); ?>', '<?php echo $jogo['preco']; ?>')">ADICIONAR</button>
                                         </div>
                                     </div>
                                 </div>
@@ -137,7 +130,7 @@
     <footer class="footer mt-5">
         <div class="container py-5 text-center">
             <h4 class="footer-brand">GRGAME<span>STORE</span></h4>
-            <p class="text-white-50 mt-3">Sua loja premium de jogos digitais.</p>
+            <p class="text-white-50 mt-3">A tua loja premium de jogos digitais.</p>
             <ul class="list-inline footer-links mt-4">
                 <li class="list-inline-item mx-3"><a href="index.php">Início</a></li>
                 <li class="list-inline-item mx-3"><a href="#" data-bs-toggle="modal" data-bs-target="#modalLancamentos">Lançamentos</a></li>
@@ -169,18 +162,48 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body text-white">
-                    <form>
+                    <form id="formSolicitar">
                         <div class="mb-3">
                             <label class="form-label">Nome do Jogo</label>
-                            <input type="text" class="form-control" placeholder="Ex: GTA VI">
+                            <input type="text" class="form-control" id="nomeJogo" placeholder="Ex: GTA VI" required>
                         </div>
-                        <button type="button" class="btn btn-primary w-100 py-3 fw-bold" onclick="alert('Pedido enviado!')">ENVIAR PEDIDO</button>
+                        <div class="mb-3">
+                            <label class="form-label">Plataforma</label>
+                            <select class="form-select text-white" id="plataformaJogo" style="background-color: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255,255,255,0.2);" required>
+                                <option value="" selected disabled style="background-color: #1a1a1a; color: #888;">Selecione a plataforma</option>
+                                <option value="PC" style="background-color: #1a1a1a; color: #fff;">PC (Windows)</option>
+                                <option value="PS5" style="background-color: #1a1a1a; color: #fff;">PlayStation 5</option>
+                                <option value="Xbox" style="background-color: #1a1a1a; color: #fff;">Xbox Series X/S</option>
+                                <option value="Nintendo" style="background-color: #1a1a1a; color: #fff;">Nintendo Switch</option>
+                                <option value="Mobile" style="background-color: #1a1a1a; color: #fff;">Mobile (Android/iOS)</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-primary w-100 py-3 fw-bold" onclick="enviarSolicitacao()">ENVIAR PEDIDO</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="modal fade" id="modalCompra" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg text-center p-4">
+                <div class="modal-body text-white">
+                    <div class="display-1 text-success mb-3">✓</div>
+                    <h4 class="fw-bold mb-2">Adicionado ao Carrinho!</h4>
+                    <p class="text-white-50 mb-4">
+                        <strong id="nomeJogoCompra" class="text-white">Jogo</strong> foi adicionado por <strong id="precoJogoCompra" class="text-success">R$ 0,00</strong>.
+                    </p>
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-primary py-3 fw-bold" onclick="alert('A redirecionar para a página de pagamento...')">FINALIZAR COMPRA</button>
+                        <button type="button" class="btn btn-outline-secondary py-2" data-bs-dismiss="modal">CONTINUAR A COMPRAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
